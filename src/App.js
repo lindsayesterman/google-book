@@ -4,7 +4,6 @@ import AddBook from './addBook.js';
 import BookApp from './bookApp.js';
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -14,8 +13,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    const book = this.state.title
     const apiKey = `AIzaSyD1rgrZVxc_KM5GMl6hj67ubEFOzGJsPlc`;
-    const url = `https://www.googleapis.com/books/v1/volumes?q=flowers&key=${apiKey}`;
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${book}&key=${apiKey}`
+    console.log(url);
     const options = {
       method: 'GET',
       headers: {
@@ -43,7 +44,6 @@ class App extends Component {
           error: err.message
         });
       });
-
   }
 
   setShowAddForm(show) {

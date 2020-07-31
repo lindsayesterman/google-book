@@ -14,11 +14,13 @@ class AddBook extends Component {
     });
   }
 
+
   handleSubmit(e) {
     e.preventDefault();
-    const book = (({title}) => ({title}))(this.state);
+    const book = this.state.title
+    console.log(book);
     const apiKey = `AIzaSyD1rgrZVxc_KM5GMl6hj67ubEFOzGJsPlc`;
-    const url = `https://www.googleapis.com/books/v1/volumes?q=flowers&key=${apiKey}`;    
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${book}&key=${apiKey}`
     const options = {
       method: 'POST',
       body: JSON.stringify(book),
@@ -67,6 +69,7 @@ class AddBook extends Component {
             value={this.state.title}
             onChange={e => this.titleChanged(e.target.value)}/>
           <div className="addbookmark__buttons">
+          <button onClick={e => this.props.showForm(false)}>Cancel</button>
             <button type="submit" >Save</button>
           </div>  
         </form>
